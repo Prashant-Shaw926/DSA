@@ -1,37 +1,36 @@
 class Solution {
 public:
     bool backspaceCompare(string s, string t) {
-        vector<char> stackS;
-        vector<char> stackT;
+
         int n = s.size(), m = t.size();
-        int i = 0;
-        for (i = 0; i < n; i++) {
-            if (s[i] == '#' && !stackS.empty()) {
-                stackS.pop_back();
-            } else {
-                if(s[i] != '#'){
-                    stackS.push_back(s[i]);
+        int i = n - 1, j = m - 1, removeS = 0, removeT = 0;
+
+        while (i >= 0 && j >= 0) {
+            while (s[i] == '#') {
+                removeS++;
+                i--;
+            }
+            while (t[j] == '#') {
+                removeT++;
+                j--;
+            }
+            if (removeS != 0) {
+                while (removeS > 0 && i > 0) {
+                    i--;
+                    removeS--;
                 }
             }
-        }
-
-        for (i = 0; i < m; i++) {
-            if (t[i] == '#' && !stackT.empty()) {
-                stackT.pop_back();
-            } else {
-                if(t[i] != '#'){
-                    stackT.push_back(t[i]);
+            if (removeT != 0) {
+                while (removeT > 0 && j > 0) {
+                    j--;
+                    removeT--;
                 }
             }
-        }
-
-        if (stackS.size() != stackT.size()) {
-            return false;
-        }
-        n = stackS.size();
-        for (i = 0; i < n; i++) {
-            if (stackS[i] != stackT[i]) {
+            if (s[i] != t[j] && (s[i] != '#' && t[j] != '#')) {
                 return false;
+            } else {
+                i--;
+                j--;
             }
         }
 
