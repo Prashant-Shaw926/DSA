@@ -16,14 +16,22 @@ public:
             }
             if (removeS != 0) {
                 while (removeS > 0 && i > 0) {
+                    if (s[i] == '#') {
+                        removeS++;
+                    } else {
+                        removeS--;
+                    }
                     i--;
-                    removeS--;
                 }
             }
             if (removeT != 0) {
                 while (removeT > 0 && j > 0) {
+                    if (t[j] == '#') {
+                        removeT++;
+                    } else {
+                        removeT--;
+                    }
                     j--;
-                    removeT--;
                 }
             }
             if (s[i] != t[j] && (s[i] != '#' && t[j] != '#')) {
