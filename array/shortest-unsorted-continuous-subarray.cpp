@@ -7,7 +7,7 @@ public:
         }
         int start = -1, end = -1;
         int i = 0;
-        long long max = INT_MIN, min = INT_MAX;
+        int max = INT_MIN, min = INT_MAX;
 
         for (i = 0; i < n - 1; i++) {
             if (nums[i] > nums[i + 1]) {
